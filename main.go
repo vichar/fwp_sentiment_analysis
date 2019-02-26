@@ -35,7 +35,7 @@ func main() {
 			return c.JSON(http.StatusNotAcceptable, "Error Parsing Data")
 		}
 
-		return c.JSON(http.StatusOK, string(channelsJSON))
+		return c.JSON(http.StatusOK, json.RawMessage(string(channelsJSON)))
 
 	})
 	// e.GET("/fizzbuzz/:number", func(c echo.Context) error {
