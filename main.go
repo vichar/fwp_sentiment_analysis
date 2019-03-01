@@ -38,22 +38,14 @@ func main() {
 		return c.JSON(http.StatusOK, json.RawMessage(string(channelsJSON)))
 
 	})
-	// e.GET("/fizzbuzz/:number", func(c echo.Context) error {
-	// 	number := c.Param("number")
-	// 	n, error := strconv.Atoi(number)
-	// 	if error != nil {
-	// 		return c.JSON(http.StatusBadRequest, map[string]string{
-	// 			"message": error.Error(),
-	// 		})
-	// 	}
-	// 	if n > 5 {
-	// 		return c.JSON(http.StatusBadRequest, map[string]string{
-	// 			"message": number + " is not a supported number.",
-	// 		})
-	// 	}
-	// 	return c.JSON(http.StatusOK, map[string]string{
-	// 		"message": fizzbuzz.Say(n),
-	// 	})
-	// })
+
+	e.GET("/programs", func(c echo.Context) error {
+		channelsJSON, jsonError := json.Marshal(channels)
+		if jsonError != nil {
+			e.Logger.Error("Error Parsing Data")
+			return c.JSON(http.StatusNotAcceptable, "Error Parsing Data")
+		}
+		return c.JSON(http.StatusOK, json.RawMessage(string(channelsJSON)))
+	})
 	e.Logger.Fatal(e.Start(":1323"))
 }
