@@ -13,7 +13,7 @@ func main() {
 	channels := make([]rssfeed.RSSChannel, 0)
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
+		return c.String(http.StatusOK, "OK")
 	})
 	e.POST("/programs", func(c echo.Context) error {
 		feed := c.FormValue("rssURL")
